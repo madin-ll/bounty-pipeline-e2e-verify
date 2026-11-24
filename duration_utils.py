@@ -16,7 +16,8 @@ _UNITS = {
 def parse_duration(spec: str) -> int:
     """Convert a duration string like '1h30m' into total seconds."""
     total = 0
-    for amount, unit in re.findall(r"(\d+)([wdhms])", spec):
+    for amount, unit in re.findall(r"(\d+)([wdhms])", spec.strip(), re.IGNORECASE):
+        unit = unit.lower()
         if unit in _UNITS:
             total += int(amount) * _UNITS[unit]
     return total

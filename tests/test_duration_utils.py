@@ -13,3 +13,9 @@ class ParseDurationTests(unittest.TestCase):
 
     def test_combined(self) -> None:
         self.assertEqual(parse_duration("1h30m"), 5400)
+
+    def test_uppercase_units(self) -> None:
+        self.assertEqual(parse_duration("1D2H"), 93600)
+
+    def test_surrounding_whitespace(self) -> None:
+        self.assertEqual(parse_duration(" 1D2H "), 93600)
