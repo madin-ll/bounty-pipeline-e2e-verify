@@ -13,6 +13,7 @@ _UNITS = {
 }
 
 def parse_duration(spec: str) -> int:
+    spec = spec.strip()
     """Convert a duration string like '1h30m' into total seconds."""
     total = 0
     for amount, unit in re.findall(r"(\d+)([wdhms])", spec):
