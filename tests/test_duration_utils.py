@@ -7,3 +7,9 @@ class ParseDurationTests(unittest.TestCase):
 
     def test_combined(self) -> None:
         self.assertEqual(parse_duration("1h30m"), 5400)
+
+    def test_days(self) -> None:
+        self.assertEqual(parse_duration("1d"), 86400)
+
+    def test_days_and_hours(self) -> None:
+        self.assertEqual(parse_duration("2d4h"), 187200)
