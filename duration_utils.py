@@ -1,21 +1,23 @@
-"""Duration parser helper."""
+def parse_duration(duration_str: str) -> int:
+    # Split the duration string into components
+    parts = duration_str.split('')
 
-from __future__ import annotations
+    # Initialize total seconds to zero
+    total_seconds = 0
 
-import re
+    # Iterate over each part of the duration string
+    for i, part in enumerate(parts):
+        if part == 'd':
+            # Calculate the number of seconds in a day and add it to total_seconds
+            total_seconds += 86400
+        elif part.isdigit():
+            # Convert the digit to an integer and multiply by the appropriate unit
+            value = int(part)
+            if i == 0:
+                total_seconds += value * 3600  # hours
+            elif i == 1:
+                total_seconds += value * 60   # minutes
+            else:
+                total_seconds += value       # seconds
 
-# Seconds per unit. Supported: weeks, hours, minutes, seconds.
-_UNITS = {
-    "w": 604800,
-    "h": 3600,
-    "m": 60,
-    "s": 1,
-}
-
-def parse_duration(spec: str) -> int:
-    """Convert a duration string like '1h30m' into total seconds."""
-    total = 0
-    for amount, unit in re.findall(r"(\d+)([wdhms])", spec):
-        if unit in _UNITS:
-            total += int(amount) * _UNITS[unit]
-    return total
+    return total_seconds
