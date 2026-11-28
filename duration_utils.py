@@ -1,12 +1,13 @@
-"""Duration parser helper."""
+"""Duration parser helper.
 
 from __future__ import annotations
 
 import re
 
-# Seconds per unit. Supported: weeks, hours, minutes, seconds.
+# Seconds per unit. Supported: weeks, days, hours, minutes, seconds.
 _UNITS = {
     "w": 604800,
+    "d": 86400,
     "h": 3600,
     "m": 60,
     "s": 1,
